@@ -21,7 +21,17 @@ function App() {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 dark:text-white mb-5 tracking-tight">
                   Find the Perfect <span className="text-blue-600 dark:text-blue-400 relative inline-block animate-float">
                     Skip
-                    <svg className="absolute inset-x-0 bottom-0 sm:-bottom-1 md:-bottom-2 h-2 sm:h-3 md:h-4 text-blue-400 dark:text-blue-700" viewBox="0 0 100 12" preserveAspectRatio="none">
+                    <svg 
+                      className="absolute left-0 right-0 mx-auto bottom-0 sm:-bottom-1 md:-bottom-2 h-2 sm:h-3 md:h-4 text-blue-400 dark:text-blue-700" 
+                      viewBox="0 0 100 12" 
+                      preserveAspectRatio="none"
+                      width="100%" 
+                      style={{ 
+                        maxWidth: 'calc(100% + 4px)',
+                        left: '-2px',
+                        right: '-2px',
+                      }}
+                    >
                       <path d="M0,0 Q50,12 100,0" fill="currentColor" />
                     </svg>
                   </span> for You

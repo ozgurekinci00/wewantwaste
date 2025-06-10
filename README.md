@@ -1,5 +1,7 @@
 # Skip Hire Page Redesign
 
+You can test the implementation at https://wewantwaste-wine.vercel.app/. It is deployed via Vercel for testing convenience.
+
 ## Overview
 This project is a redesign of the skip selection page of https://wewantwaste.co.uk/, focusing on improved UI/UX, responsive design, and maintainable React code. The application allows users to browse and select skip options based on their needs.
 
@@ -46,7 +48,7 @@ There were a few inconsistencies with the given data (e.g. 20 yard and 40 yard s
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/ozgurekinci00/wewantwaste.git
 
 # Navigate to the project directory
 cd wewantwaste

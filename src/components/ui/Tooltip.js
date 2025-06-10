@@ -1,36 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
 const Tooltip = ({ skip }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const tooltipRef = useRef(null);
   const buttonRef = useRef(null);
-  
-  // Ensure tooltip stays within viewport
-  useEffect(() => {
-    if (!isOpen || !tooltipRef.current) return;
-    
-    const checkTooltipPosition = () => {
-      const tooltipRect = tooltipRef.current.getBoundingClientRect();
-      
-      // Check if tooltip is going out of the left viewport edge
-      if (tooltipRect.left < 16) {
-        tooltipRef.current.style.left = 'auto';
-        tooltipRef.current.style.right = '0';
-        tooltipRef.current.style.transform = 'translateX(calc(100% + 10px))';
-      }
-    };
-    
-    checkTooltipPosition();
-    window.addEventListener('resize', checkTooltipPosition);
-    
-    return () => {
-      window.removeEventListener('resize', checkTooltipPosition);
-    };
-  }, [isOpen]);
 
   return (
-    <div className="relative">
+    <div className="relative inline-block">
       <button 
         ref={buttonRef}
         className="p-1 rounded-full text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors focus:outline-none"
@@ -45,9 +21,10 @@ const Tooltip = ({ skip }) => {
       
       {isOpen && (
         <div 
-          ref={tooltipRef}
-          className="absolute z-50 right-0 transform -translate-x-[calc(5%+8px)] top-8 w-56 sm:w-60 md:w-64 lg:w-48 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 text-left"
-          style={{ maxWidth: 'min(calc(100vw - 48px), 16rem)' }}
+          className="absolute z-[100] right-0 top-0 -translate-x-[calc(7%+8px)] w-64 sm:w-60 md:w-64 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 text-left"
+          style={{
+            maxWidth: 'min(280px, calc(100vw - 32px))'
+          }}
         >
           <div className="text-sm">
             <p className="text-gray-700 dark:text-gray-300 mb-3 font-normal">{skip.description}</p>
@@ -82,8 +59,10 @@ const Tooltip = ({ skip }) => {
             </div>
           </div>
           
-          {/* Arrow pointing to button */}
-          <div className="absolute top-1/2 right-[-8px] -translate-y-1/2 w-4 h-4 rotate-45 bg-white dark:bg-gray-800 border-r border-t border-gray-200 dark:border-gray-700"></div>
+          {/* Arrow */}
+          <div
+            className="absolute top-1/2 right-[-8px] -translate-y-1/2 w-4 h-4 rotate-45 bg-white dark:bg-gray-800 border-r border-t border-gray-200 dark:border-gray-700"
+          />
         </div>
       )}
     </div>

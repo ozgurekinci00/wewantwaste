@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Skip Hire Page Redesign
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This project is a redesign of the skip selection page of https://wewantwaste.co.uk/, focusing on improved UI/UX, responsive design, and maintainable React code. The application allows users to browse and select skip options based on their needs.
 
-## Available Scripts
+## Key Improvements
 
-In the project directory, you can run:
+### Dual Layout Options
+- Users can toggle between two different viewing layouts via the toggle button on the navigation bar:
+  - Carousel Layout: A modern, new carousel layout, looks completely different from the original page as requested. This layout also contains a list view for easier comparison between skip options (Can be tested by clicking the "Compare All Options" button in the carousel layout).
+  - Grid Layout: Improved version of the original page with modern, dynamic interface.
 
-### `npm start`
+### Visual Design Enhancements
+- Implemented a modern, clean interface with consistent styling throughout
+- Created a visually appealing hero section with subtle animations and decorative elements
+- Designed a cohesive color scheme based on skip categories (small, medium, large, xlarge)
+- Added smooth transitions and animations for a more polished user experience
+- Improved typography with better hierarchy and readability
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### UX Improvements
+- Added responsive design for all screen sizes (mobile, tablet, desktop)
+- Implemented smooth animations when navigating between skip options
+- Enhanced visual feedback for user interactions
+- Improved information display with clear categorization of skip features
+- Added "Most popular" indicator for the 8-yard skip option
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technical Enhancements
+- Developed using modern React with functional components and hooks
+- Implemented responsive layouts using Tailwind CSS
+- Integrated Framer Motion for smooth, performant animations
+- Optimized for performance by minimizing unnecessary re-renders
+- Used environment-aware styling with light/dark mode support
 
-### `npm test`
+### Code Structure
+- Organized components with clear separation of concerns
+- Created reusable UI components for maintainability
+- Implemented context for global state management
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Data Integration
+The skip options are populated manually in a JSON with the data from the url: https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft with some additional information (skip measurements, descriptions, illustrations) from the url: https://www.renewableenergymarketing.net/skip-hire/
 
-### `npm run build`
+## Considerations
+There were a few inconsistencies with the given data (e.g. 20 yard and 40 yard skips have the same price). But considering this is just a proof-of-concept, I left them unchanged. I also added some mock detailed information to demonstrate the possible improvements.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation and Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Clone the repository
+git clone <repository-url>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Navigate to the project directory
+cd wewantwaste
 
-### `npm run eject`
+# Install dependencies
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Start the development server
+npm start
+```

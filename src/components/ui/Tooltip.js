@@ -3,50 +3,36 @@ import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
 const Tooltip = ({ skip }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [position, setPosition] = useState({
-    transform: '-translate-x-1/2',
-    left: '50%',
-    right: 'auto'
-  });
   const tooltipRef = useRef(null);
-  const containerRef = useRef(null);
-
-  // Check if tooltip is going offscreen and adjust position
+  const buttonRef = useRef(null);
+  
+  // Ensure tooltip stays within viewport
   useEffect(() => {
-    if (isOpen && tooltipRef.current && containerRef.current) {
+    if (!isOpen || !tooltipRef.current) return;
+    
+    const checkTooltipPosition = () => {
       const tooltipRect = tooltipRef.current.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
       
-      // Check if tooltip is going offscreen on the right
-      if (tooltipRect.right > viewportWidth - 16) {
-        setPosition({
-          transform: 'translateX(-90%)',
-          left: '0',
-          right: 'auto'
-        });
+      // Check if tooltip is going out of the left viewport edge
+      if (tooltipRect.left < 16) {
+        tooltipRef.current.style.left = 'auto';
+        tooltipRef.current.style.right = '0';
+        tooltipRef.current.style.transform = 'translateX(calc(100% + 10px))';
       }
-      // Check if tooltip is going offscreen on the left
-      else if (tooltipRect.left < 16) {
-        setPosition({
-          transform: 'translateX(0)',
-          left: '0',
-          right: 'auto'
-        });
-      }
-      // Default position (centered)
-      else {
-        setPosition({
-          transform: '-translate-x-1/2',
-          left: '50%',
-          right: 'auto'
-        });
-      }
-    }
+    };
+    
+    checkTooltipPosition();
+    window.addEventListener('resize', checkTooltipPosition);
+    
+    return () => {
+      window.removeEventListener('resize', checkTooltipPosition);
+    };
   }, [isOpen]);
 
   return (
-    <div className="relative inline-block" ref={containerRef}>
+    <div className="relative">
       <button 
+        ref={buttonRef}
         className="p-1 rounded-full text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors focus:outline-none"
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
@@ -60,13 +46,8 @@ const Tooltip = ({ skip }) => {
       {isOpen && (
         <div 
           ref={tooltipRef}
-          className="absolute z-50 w-64 sm:w-72 p-4 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 text-left"
-          style={{
-            transform: position.transform,
-            left: position.left,
-            right: position.right,
-            maxWidth: 'calc(100vw - 32px)'
-          }}
+          className="absolute z-50 right-0 transform -translate-x-[calc(5%+8px)] top-8 w-56 sm:w-60 md:w-64 lg:w-48 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 text-left"
+          style={{ maxWidth: 'min(calc(100vw - 48px), 16rem)' }}
         >
           <div className="text-sm">
             <p className="text-gray-700 dark:text-gray-300 mb-3 font-normal">{skip.description}</p>
@@ -100,8 +81,9 @@ const Tooltip = ({ skip }) => {
               </div>
             </div>
           </div>
-          {/* Arrow */}
-          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 rotate-45 bg-white dark:bg-gray-800 border-l border-t border-gray-200 dark:border-gray-700"></div>
+          
+          {/* Arrow pointing to button */}
+          <div className="absolute top-1/2 right-[-8px] -translate-y-1/2 w-4 h-4 rotate-45 bg-white dark:bg-gray-800 border-r border-t border-gray-200 dark:border-gray-700"></div>
         </div>
       )}
     </div>

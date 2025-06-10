@@ -160,7 +160,7 @@ const CarouselView = ({
       </div>
       
       {/* Add styles to hide scrollbar but allow scrolling */}
-      <style jsx global>{`
+      <style jsx="true" global="true">{`
         .hide-scrollbar {
           -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */

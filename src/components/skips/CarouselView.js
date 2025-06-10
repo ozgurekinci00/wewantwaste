@@ -232,13 +232,13 @@ const CarouselView = ({
                     <div>
                       <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
                         {selectedSkip.size} Yard Skip
+                        {selectedSkip.size === 8 && (
+                          <span className="inline-flex items-center ml-2 px-2.5 py-1 bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-300 text-xs font-medium rounded-full shadow-sm">
+                            <StarIcon className="h-3 w-3 mr-1 text-yellow-500 dark:text-yellow-400" />
+                            Most popular
+                          </span>
+                        )}
                       </h2>
-                      {selectedSkip.size === 8 && (
-                        <span className="inline-flex items-center mt-2 px-3 py-1.5 bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-300 text-sm font-medium rounded-full shadow-sm">
-                          <StarIcon className="h-4 w-4 mr-1 text-yellow-500 dark:text-yellow-400" />
-                          Most popular
-                        </span>
-                      )}
                     </div>
                     
                     {/* Info Tooltip */}
